@@ -1,0 +1,61 @@
+{
+    "common": {
+        "login": "Login",
+        "logout": "Logout",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success"
+    },
+    "auth": {
+        "welcome": "Welcome Back",
+        "subtitle": "Sign in to continue to your dashboard",
+        "email": "Email Address",
+        "emailPlaceholder": "Enter your email",
+        "password": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot password?",
+        "loginButton": "Sign In",
+        "loggingIn": "Signing in...",
+        "loginError": "Invalid email or password",
+        "logoutSuccess": "You have been logged out"
+    },
+    "nav": {
+        "dashboard": "Dashboard",
+        "home": "Home",
+        "settings": "Settings",
+        "profile": "Profile",
+        "users": "Users",
+        "reports": "Reports",
+        "management": "Management",
+        "system": "System"
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "welcomeMessage": "Welcome back, {name}!",
+        "subtitle": "Here's what's happening with your projects today.",
+        "totalUsers": "Total Users",
+        "totalRevenue": "Total Revenue",
+        "activeProjects": "Active Projects",
+        "completedTasks": "Completed Tasks"
+    },
+    "user": {
+        "profile": "My Profile",
+        "settings": "Account Settings",
+        "logout": "Logout"
+    },
+    "theme": {
+        "light": "Light Mode",
+        "dark": "Dark Mode",
+        "system": "System Default"
+    },
+    "language": {
+        "en": "English",
+        "id": "Indonesian"
+    }
+}

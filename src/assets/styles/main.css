@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* Enable dark mode with class selector strategy */
+@variant dark (&:where(.dark, .dark *));
+
+/* Custom Theme Variables */
+@theme {
+    /* Primary Colors */
+    --color-primary-50: #eef2ff;
+    --color-primary-100: #e0e7ff;
+    --color-primary-200: #c7d2fe;
+    --color-primary-300: #a5b4fc;
+    --color-primary-400: #818cf8;
+    --color-primary-500: #6366f1;
+    --color-primary-600: #4f46e5;
+    --color-primary-700: #4338ca;
+    --color-primary-800: #3730a3;
+    --color-primary-900: #312e81;
+
+    /* Surface Colors */
+    --color-surface-50: #f9fafb;
+    --color-surface-100: #f3f4f6;
+    --color-surface-200: #e5e7eb;
+    --color-surface-300: #d1d5db;
+    --color-surface-400: #9ca3af;
+    --color-surface-500: #6b7280;
+    --color-surface-600: #4b5563;
+    --color-surface-700: #374151;
+    --color-surface-800: #1f2937;
+    --color-surface-900: #111827;
+
+    /* Sidebar Width */
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 72px;
+
+    /* Transitions */
+    --transition-fast: 150ms;
+    --transition-normal: 300ms;
+    --transition-slow: 500ms;
+
+    /* Font Family */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ============================================
+   SMOOTH THEME TRANSITION
+   Apply to backgrounds/borders for seamless dark/light switch
+   Text color changes instantly for better readability
+   ============================================ */
+*,
+*::before,
+*::after {
+    transition-property: background-color, border-color, fill, stroke, box-shadow;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Disable transition on elements that shouldn't animate */
+.no-transition,
+.no-transition *,
+[data-no-transition],
+[data-no-transition] * {
+    transition: none !important;
+}
+
+/* Base Styles */
+html {
+    font-family: var(--font-sans);
+    /* Smooth scroll and prevent flash */
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    @apply bg-surface-50 text-surface-900 antialiased;
+}
+
+/* Dark Mode Overrides */
+.dark body {
+    @apply bg-surface-900 text-surface-50;
+}
+
+/* Custom Utilities */
+@utility glass {
+    @apply bg-white/70 backdrop-blur-md;
+}
+
+.dark .glass {
+    @apply bg-surface-800/70;
+}
+
+@utility card-shadow {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+@utility card-shadow-dark {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+}
+
+/* Focus Ring Utility */
+@utility focus-ring {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+}
+
+.dark .focus-ring {
+    @apply ring-offset-surface-900;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    transition: background-color 300ms;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 9999px;
+    transition: background-color 300ms;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #4b5563;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* Animations */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes scale-in {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Spin animation for loader */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@utility animate-fade-in {
+    animation: fade-in var(--transition-normal) ease-out;
+}
+
+@utility animate-slide-in-left {
+    animation: slide-in-left var(--transition-normal) ease-out;
+}
+
+@utility animate-scale-in {
+    animation: scale-in var(--transition-fast) ease-out;
+}
+
+@utility animate-spin {
+    animation: spin 1s linear infinite;
+}

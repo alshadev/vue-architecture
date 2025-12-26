@@ -1,0 +1,61 @@
+{
+    "common": {
+        "login": "Masuk",
+        "logout": "Keluar",
+        "submit": "Kirim",
+        "cancel": "Batal",
+        "save": "Simpan",
+        "delete": "Hapus",
+        "edit": "Ubah",
+        "loading": "Memuat...",
+        "error": "Kesalahan",
+        "success": "Berhasil"
+    },
+    "auth": {
+        "welcome": "Selamat Datang Kembali",
+        "subtitle": "Masuk untuk melanjutkan ke dasbor Anda",
+        "email": "Alamat Email",
+        "emailPlaceholder": "Masukkan email Anda",
+        "password": "Kata Sandi",
+        "passwordPlaceholder": "Masukkan kata sandi Anda",
+        "rememberMe": "Ingat saya",
+        "forgotPassword": "Lupa kata sandi?",
+        "loginButton": "Masuk",
+        "loggingIn": "Sedang masuk...",
+        "loginError": "Email atau kata sandi salah",
+        "logoutSuccess": "Anda telah keluar"
+    },
+    "nav": {
+        "dashboard": "Dasbor",
+        "home": "Beranda",
+        "settings": "Pengaturan",
+        "profile": "Profil",
+        "users": "Pengguna",
+        "reports": "Laporan",
+        "management": "Manajemen",
+        "system": "Sistem"
+    },
+    "dashboard": {
+        "title": "Dasbor",
+        "welcomeMessage": "Selamat datang kembali, {name}!",
+        "subtitle": "Berikut perkembangan proyek Anda hari ini.",
+        "totalUsers": "Total Pengguna",
+        "totalRevenue": "Total Pendapatan",
+        "activeProjects": "Proyek Aktif",
+        "completedTasks": "Tugas Selesai"
+    },
+    "user": {
+        "profile": "Profil Saya",
+        "settings": "Pengaturan Akun",
+        "logout": "Keluar"
+    },
+    "theme": {
+        "light": "Mode Terang",
+        "dark": "Mode Gelap",
+        "system": "Default Sistem"
+    },
+    "language": {
+        "en": "Inggris",
+        "id": "Indonesia"
+    }
+}
