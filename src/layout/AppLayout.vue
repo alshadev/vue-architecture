@@ -1,25 +1,21 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { storeToRefs } from 'pinia'
 import AppSidebar from './AppSidebar.vue'
 import AppNavbar from './AppNavbar.vue'
 import Icon from '@/core/components/icons/Icon.vue'
+import { useLayoutStore } from './store'
 
-const isSidebarCollapsed = ref(false)
-const isMobileSidebarOpen = ref(false)
+const layoutStore = useLayoutStore()
+const { isSidebarCollapsed, isMobileSidebarOpen } = storeToRefs(layoutStore)
+const { toggleSidebarCollapse, toggleMobileSidebar, setMobileSidebarOpen } = layoutStore
+
 const isMobile = ref(false)
-
-const toggleSidebarCollapse = () => {
-  isSidebarCollapsed.value = !isSidebarCollapsed.value
-}
-
-const toggleMobileSidebar = () => {
-  isMobileSidebarOpen.value = !isMobileSidebarOpen.value
-}
 
 const checkMobile = () => {
   isMobile.value = window.innerWidth < 1024
   if (!isMobile.value) {
-    isMobileSidebarOpen.value = false
+    setMobileSidebarOpen(false)
   }
 }
 

@@ -174,7 +174,7 @@ const formatDate = (date: string) => {
     <div class="flex flex-col h-full space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 class="text-2xl font-bold text-surface-900 dark:text-surface-100">Users</h1>
+          <h1 class="text-2xl font-bold text-surface-900 dark:text-surface-100">User Management</h1>
           <p class="text-surface-500 dark:text-surface-400 mt-1">Manage user access and permissions</p>
         </div>
         <BaseButton icon="plus" @click="handleCreate">Add User</BaseButton>

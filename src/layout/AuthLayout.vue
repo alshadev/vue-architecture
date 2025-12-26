@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import ThemeToggle from '@/core/components/ThemeToggle.vue'
 import LanguageSelector from '@/core/components/LanguageSelector.vue'
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -17,9 +20,9 @@ import LanguageSelector from '@/core/components/LanguageSelector.vue'
         <!-- Logo / Brand -->
         <div class="text-center mb-8">
           <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm mb-4">
-            <span class="text-3xl font-bold text-white">V</span>
+            <span class="text-3xl font-bold text-white">A</span>
           </div>
-          <h1 class="text-2xl font-bold text-white">Vue Admin</h1>
+          <h1 class="text-2xl font-bold text-white">{{ t('app.name') }}</h1>
         </div>
 
         <!-- Content slot -->
@@ -29,7 +32,7 @@ import LanguageSelector from '@/core/components/LanguageSelector.vue'
 
     <!-- Footer -->
     <footer class="py-4 text-center text-white/60 text-sm">
-      &copy; {{ new Date().getFullYear() }} Vue Admin. All rights reserved.
+      &copy; {{ new Date().getFullYear() }} {{ t('app.name') }}. All rights reserved.
     </footer>
   </div>
 </template>

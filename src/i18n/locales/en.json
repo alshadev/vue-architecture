@@ -57,5 +57,29 @@
     "language": {
         "en": "English",
         "id": "Indonesian"
+    },
+    "app": {
+        "name": "Arusha Admin App",
+        "shortName": "Arusha",
+        "login": {
+            "slide1": {
+                "title": "Connecting the World",
+                "subtitle": "Through Modern Technology"
+            },
+            "slide2": {
+                "title": "Innovation First",
+                "subtitle": "Driving Digital Transformation"
+            },
+            "slide3": {
+                "title": "Secure & Scalable",
+                "subtitle": "Enterprise Ready Solutions"
+            },
+            "backToWebsite": "Back to website",
+            "socialLogin": "Or login with",
+            "google": "Google",
+            "microsoft": "Microsoft",
+            "noAccount": "Don't have an account?",
+            "signUp": "Sign up"
+        }
     }
 }

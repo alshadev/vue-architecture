@@ -54,7 +54,7 @@ const navigateTo = (path: string | undefined) => {
         <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center transition-transform duration-300"
           :class="{ 'scale-90': props.collapsed }"
         >
-          <span class="text-xl font-bold text-white">V</span>
+          <span class="text-xl font-bold text-white">A</span>
         </div>
         
         <!-- Title - animate width and opacity -->
@@ -63,7 +63,7 @@ const navigateTo = (path: string | undefined) => {
           :class="props.collapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'"
         >
           <span class="text-lg font-semibold text-surface-900 dark:text-surface-100 whitespace-nowrap">
-            Vue Admin
+            {{ t('app.name') }}
           </span>
         </div>
       </div>

@@ -57,5 +57,29 @@
     "language": {
         "en": "Inggris",
         "id": "Indonesia"
+    },
+    "app": {
+        "name": "Arusha Admin App",
+        "shortName": "Arusha",
+        "login": {
+            "slide1": {
+                "title": "Menghubungkan Dunia",
+                "subtitle": "Melalui Teknologi Modern"
+            },
+            "slide2": {
+                "title": "Inovasi Terdepan",
+                "subtitle": "Mendorong Transformasi Digital"
+            },
+            "slide3": {
+                "title": "Aman & Skalabel",
+                "subtitle": "Solusi Siap Pakai Perusahaan"
+            },
+            "backToWebsite": "Kembali ke situs web",
+            "socialLogin": "Atau masuk dengan",
+            "google": "Google",
+            "microsoft": "Microsoft",
+            "noAccount": "Belum punya akun?",
+            "signUp": "Daftar"
+        }
     }
 }
