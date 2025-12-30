@@ -112,7 +112,7 @@ const isIndeterminate = computed(() => props.selection.length > 0 && props.selec
       </div>
 
       <table class="w-full text-left text-sm">
-        <thead class="bg-surface-50 dark:bg-surface-700/50 sticky top-0 z-10">
+        <thead class="bg-surface-50 dark:bg-surface-800 sticky top-0 z-10">
           <tr>
             <!-- Selection Checkbox -->
             <th v-if="selection" class="w-12 px-4 py-3 border-b border-surface-200 dark:border-surface-700">
