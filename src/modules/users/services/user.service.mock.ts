@@ -105,4 +105,9 @@ export class MockUserService implements IUserService {
 
         this.users.splice(index, 1)
     }
+
+    async deleteMany(ids: string[]): Promise<void> {
+        await delay(500)
+        this.users = this.users.filter(u => !ids.includes(u.id))
+    }
 }

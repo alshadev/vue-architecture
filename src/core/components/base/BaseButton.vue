@@ -3,7 +3,7 @@ import Icon from '@/core/components/icons/Icon.vue'
 import type { IconName } from '@/core/components/icons/icons'
 
 interface Props {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline'
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline' | 'success' | 'warning'
   size?: 'sm' | 'md' | 'lg'
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
@@ -32,7 +32,9 @@ const variantClasses: Record<string, string> = {
   secondary: 'bg-surface-100 hover:bg-surface-200 text-surface-800 dark:bg-surface-700 dark:hover:bg-surface-600 dark:text-surface-100',
   ghost: 'bg-transparent hover:bg-surface-100 text-surface-700 dark:hover:bg-surface-800 dark:text-surface-300',
   danger: 'bg-red-500 hover:bg-red-600 text-white shadow-sm hover:shadow-md',
-  outline: 'bg-transparent border border-surface-300 dark:border-surface-600 text-surface-700 dark:text-surface-300 hover:bg-surface-50 dark:hover:bg-surface-800'
+  outline: 'bg-transparent border border-surface-300 dark:border-surface-600 text-surface-700 dark:text-surface-300 hover:bg-surface-50 dark:hover:bg-surface-800',
+  success: 'bg-green-500 hover:bg-green-600 text-white shadow-sm hover:shadow-md',
+  warning: 'bg-yellow-500 hover:bg-yellow-600 text-white shadow-sm hover:shadow-md'
 }
 
 const sizeClasses: Record<string, string> = {

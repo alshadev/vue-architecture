@@ -5,6 +5,7 @@ import BaseDataTable from '@/core/components/base/BaseDataTable.vue'
 import BaseButton from '@/core/components/base/BaseButton.vue'
 import BaseDrawer from '@/core/components/base/BaseDrawer.vue'
 import BaseModal from '@/core/components/base/BaseModal.vue'
+import BaseAlertModal from '@/core/components/base/BaseAlertModal.vue'
 import BaseInput from '@/core/components/base/BaseInput.vue'
 import Icon from '@/core/components/icons/Icon.vue'
 import { useCrud } from '@/core/composables/useCrud'
@@ -27,7 +28,8 @@ const {
   handleFilterChange,
   createItem,
   updateItem,
-  deleteItem
+  deleteItem,
+  deleteItems
 } = useCrud<User, CreateUserDto, UpdateUserDto, UserFilter>(userService, {
   search: '',
   role: '',
@@ -57,6 +59,16 @@ const isModalOpen = ref(false)
 const isFilterDrawerOpen = ref(false)
 const selectedUser = ref<User | null>(null)
 const selectedRows = ref<User[]>([])
+
+// Alert State
+const alertState = ref({
+  isOpen: false,
+  type: 'danger' as 'danger' | 'warning' | 'info' | 'success',
+  title: '',
+  message: '',
+  loading: false,
+  onConfirm: async () => {}
+})
 
 // Form State
 const form = ref<CreateUserDto>({
@@ -118,21 +130,42 @@ const handleEdit = (user: User) => {
   isModalOpen.value = true
 }
 
-const handleDelete = async (user: User) => {
-  if(confirm('Are you sure you want to delete this user?')) {
+const handleDelete = (user: User) => {
+  alertState.value = {
+    isOpen: true,
+    type: 'danger',
+    title: 'Delete User',
+    message: `Are you sure you want to delete ${user.name}? This action cannot be undone.`,
+    loading: false,
+    onConfirm: async () => {
       await deleteItem(user.id)
+    }
   }
 }
 
-const handleBulkDelete = async () => {
-  if(confirm(`Are you sure you want to delete ${selectedRows.value.length} users?`)) {
-    // Determine if we need a bulk delete service method or just loop
-    // For now, loop calls (inefficient but works for mock)
-    // In real app, consider adding bulk delete endpoint
-    for (const user of selectedRows.value) {
-      await deleteItem(user.id)
+const handleBulkDelete = () => {
+  const count = selectedRows.value.length
+  alertState.value = {
+    isOpen: true,
+    type: 'danger',
+    title: 'Delete Users',
+    message: `Are you sure you want to delete ${count} users? This action cannot be undone.`,
+    loading: false,
+    onConfirm: async () => {
+      const ids = selectedRows.value.map(user => user.id)
+      await deleteItems(ids)
+      selectedRows.value = []
     }
-    selectedRows.value = []
+  }
+}
+
+const handleAlertConfirm = async () => {
+  try {
+    alertState.value.loading = true
+    await alertState.value.onConfirm()
+    alertState.value.isOpen = false
+  } finally {
+    alertState.value.loading = false
   }
 }
 
@@ -424,6 +457,16 @@ const formatDate = (date: string) => {
           </div>
         </template>
       </BaseModal>
+
+      <!-- Alert Component -->
+      <BaseAlertModal
+        v-model="alertState.isOpen"
+        :type="alertState.type"
+        :title="alertState.title"
+        :message="alertState.message"
+        :loading="alertState.loading"
+        @confirm="handleAlertConfirm"
+      />
     </div>
   </AppLayout>
 </template>

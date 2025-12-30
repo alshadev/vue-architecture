@@ -7,6 +7,7 @@ export interface ICrudService<T, CreateDto, UpdateDto, FilterDto> {
     create(data: CreateDto): Promise<T>
     update(id: string, data: UpdateDto): Promise<T>
     delete(id: string): Promise<void>
+    deleteMany?(ids: string[]): Promise<void>
 }
 
 export function useCrud<T, CreateDto, UpdateDto, FilterDto extends object>(
@@ -94,7 +95,7 @@ export function useCrud<T, CreateDto, UpdateDto, FilterDto extends object>(
     }
 
     const deleteItem = async (id: string) => {
-        if (!confirm('Are you sure you want to delete this item?')) return // Simple confirm for now
+
 
         loading.value = true
         try {
@@ -115,6 +116,47 @@ export function useCrud<T, CreateDto, UpdateDto, FilterDto extends object>(
         }
     }
 
+    const deleteItems = async (ids: string[]) => {
+        loading.value = true
+        try {
+            if (service.deleteMany) {
+                await service.deleteMany(ids)
+            } else {
+                // Fallback to loop
+                await Promise.all(ids.map(id => service.delete(id)))
+            }
+
+            // Adjust pagination if needed - complicated for bulk, simple check:
+            // If page is empty after delete, go back. 
+            // Better to just fetchItems and let backend handle or if total is 0, page--.
+            // Simplified: if current page has no items effectively (length <= deleted count), try to go back safely.
+            // Actually, fetchItems handles receiving the correct data for the current page.
+            // But if we delete EVERYTHING on the last page, we might want to go back.
+            // Let's rely on fetchItems returning empty and user manually navigating or smart logic:
+
+            // Very simple check: if we deleted everything visible roughly
+            if (items.value.length <= ids.length && pagination.page > 1) {
+                // logic is tricky without knowing exactly which items were deleted.
+                // safe bet: just fetch. if empty and page > 1, page--
+            }
+
+            await fetchItems()
+
+            // Post-fetch check for empty page
+            if (items.value.length === 0 && pagination.page > 1) {
+                pagination.page--
+                await fetchItems()
+            }
+
+            return true
+        } catch (error) {
+            console.error('Failed to delete items:', error)
+            return false
+        } finally {
+            loading.value = false
+        }
+    }
+
     return {
         items,
         loading,
@@ -127,6 +169,7 @@ export function useCrud<T, CreateDto, UpdateDto, FilterDto extends object>(
         handleFilterChange,
         createItem,
         updateItem,
-        deleteItem
+        deleteItem,
+        deleteItems
     }
 }
